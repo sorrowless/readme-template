@@ -1,0 +1,17 @@
+os: linux
+dist: focal
+language: python
+services:
+  - docker
+git:
+  depth: false
+stages:
+  - name: test
+
+
+jobs:
+  include:
+    - stage: test
+      name: "Test markdown for lint errors"
+      script: |
+        docker run -i --rm -v $(pwd):/work tmknom/markdownlint
